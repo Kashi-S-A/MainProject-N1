@@ -1,9 +1,11 @@
 package com.ty.cp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ty.cp.enums.ClassMode;
 import com.ty.cp.enums.Course;
 import com.ty.cp.enums.Status;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -26,6 +28,7 @@ public class Enquiry {
 
 	private String name;
 
+	@Column(unique = true)
 	private Long phone;
 
 	@Enumerated(EnumType.STRING)
@@ -39,5 +42,6 @@ public class Enquiry {
 
 	@ManyToOne
 	@JoinColumn(name = "counsellor_id")
+	@JsonIgnore
 	private Counsellor counsellor;
 }
